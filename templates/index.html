@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Checker</title>
+    <!-- <link rel="stylesheet" href="templates\style.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            /* background-color: #333; */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #0ef;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4rem;
+            box-shadow: 0 0 0.5rem #0ef;
+            color:#323946;
+        }
+        button:hover {
+            box-shadow: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .form{
+            background-color:#323946;
+            color:white;
+            display:block;
+            border:2px solid black; 
+            padding-bottom: 70px;
+            padding-top:25px;
+            margin-left: 400px;
+            margin-right: 400px;
+        }
+        .form h1 
+        {
+            color:#0ef;
+            padding-left: 30px;
+        }
+        .form .box
+        {
+            padding-left: 120px;;
+            padding-top:10px;
+            font-size: 20px;
+        }
+        .btn {
+            padding-left: 280px;
+            padding-top:15px;
+            height:10px;
+            width:130px;
+        }
+
+    </style>
+</head>
+<body>
+    <form method="post" class="form">
+        <div>
+            <h1 >KESHAV MEMORIAL INSTITUTE OF TECHNOLOGY<span style="color:white;font-size:20px;">- Name wise results</span></h1>
+    
+        </div>
+        <div class="box">
+        <label for="name">Enter your full name:</label>
+        <input type="text" id="name" name="name" required>
+        </div>
+        <div class="btn">
+        <button type="submit">Check Result</button>
+        </div>
+    </form>
+
+    {% if final_res %}
+        <h2>YOUR RESULT:</h2>
+        <table border="1">
+            {% for row in final_res[:2] %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <table border="1">
+            {% for row in final_res[2:] %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
